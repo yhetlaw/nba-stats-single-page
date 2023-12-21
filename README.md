@@ -1,3 +1,5 @@
+[Live App](https://nba-stats-single-page.vercel.app/)
+
 To install and run:
 
 - npm i
