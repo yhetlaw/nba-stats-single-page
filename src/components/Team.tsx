@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useGetAllStats } from "~/api/stats";
-import { useGetTeam } from "~/api/teams";
-import { useMatchStore } from "~/stores/teamStore";
+import { useEffect, useState } from 'react';
+import { useGetAllStats } from '~/api/stats';
+import { useGetTeam } from '~/api/teams';
+import { useMatchStore } from '~/stores/teamStore';
 
-import { Loader } from "./Loader";
+import { Loader } from './Loader';
 
 export const Team = () => {
   const { selectedTeamId } = useMatchStore();
@@ -25,7 +25,7 @@ export const Team = () => {
     (stat) => `${stat.player.first_name} ${stat.player.last_name}`,
   );
 
-  if (stats && teamPlayers?.length === 0 && page < stats?.meta.total_pages) {
+  if (stats?.meta.total_pages && teamPlayers?.length === 0 && page < stats?.meta.total_pages) {
     setPage((prev) => prev + 1);
   }
 
@@ -39,9 +39,9 @@ export const Team = () => {
       className="flex flex-col items-center justify-center"
       value={isFetched}
     >
-      <div className="flex w-4/5 flex-col gap-4">
+      <div className="flex flex-col w-4/5 gap-4">
         <h1 className="text-3xl font-semibold">{team?.name}</h1>
-        <div className="flex justify-between bg-slate-100 p-6">
+        <div className="flex justify-between p-6 bg-slate-100">
           <div className="flex flex-wrap gap-6">
             <div>
               <span className="font-semibold">Team: </span>
@@ -70,7 +70,7 @@ export const Team = () => {
           {teamPlayers && teamPlayers?.length > 0 ? (
             teamPlayers?.map((player) => <li key={player}>{player}</li>)
           ) : (
-            <div className="h-10 w-10 animate-spin rounded-full border-t-4 border-blue-500"></div>
+            <div className="w-10 h-10 border-t-4 border-blue-500 rounded-full animate-spin"></div>
           )}
         </div>
       </div>
